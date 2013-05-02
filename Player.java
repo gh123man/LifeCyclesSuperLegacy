@@ -43,47 +43,54 @@ public class Player {
 			break;
 		}
 		
-		Node n = board.getNode(x, y);
+		//hokay soo. this is the complicated part. 
 		
-		if (has(n)) {
-			Node a;
-			back = n.parent;
-			back.next = null;
+		
+		Node n = board.getNode(x, y); //lets get the node we just moved too. (head is one behind)
+		n.setOwner(this);
+		
+		
+		
+		if (has(n)) { //if n is part of our tail, cut it.
+			Node a; //create a temp node.
+			back = n.parent; //set our tail end to the parent block of n.
+			back.next = null; // whatever was after our back is set to null. 
 			
-			while(n != null) {
+			
+			while(n != null) { //clears the remaining block chain.
 				n.parent = null;
+				n.setOwner(null);
 				a = n;
 				n = n.next;
 				a.next = null;
 				
 			}
 			
-			length = size();
+			length = size(); //set the len var to the new block chain size
 			
 			
-		} else {
-			if (n.getState()) {
-				length++;
+		} else { //if we dont run over ourself. 
+			if (n.getState()) { //if its an active node (add player check next)
+				length++; //extend our tail
 			}
-			head.parent = n;
-			n.next = head;
-			head = n;
-			head.setState(true);
 			
+			head.parent = n; //set the heads parent to n
+			n.next = head; //n child is set to the current head
+			head = n; //reset head to n.
+			head.setState(true); //activate the blocks state. 
 			
-			
-			
-			if (length <= size()) {
-				Node t = back.parent;
-				
-				back.setState(false);
-				back.parent = null;
-				back = t;
-				back.next = null;
-			}
 		}
 		
-		n = head;
+		if (length <= size()) { //this is used in the inital set up. allows snake to grow as it moves from start point. also, deturmines the end of the snake. 
+			Node t = back.parent;
+			back.setState(false);
+			back.setOwner(null);
+			back.parent = null;
+			back = t;
+			back.next = null;
+		}
+		
+		
 		
 	}
 	

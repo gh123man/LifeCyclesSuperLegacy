@@ -96,28 +96,4 @@ public class Main extends JPanel implements KeyListener {
 	}
 }
 
-/*
- * public static void main(String[] args) { JFrame fr = new JFrame();
- * 
- * JPanel window = new JPanel(); JTextArea display = new JTextArea();
- * display.setSize(400, 400);
- * 
- * window.add(display);
- * 
- * fr.add(window);
- * 
- * fr.setTitle("ShowGridLayout"); fr.setSize(600, 700); fr.setLocation(100,
- * 100); fr.setVisible(true);
- * fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
- * 
- * String leftDownKey = "Left Down"; String leftUpKey = "Left Up"; KeyStroke
- * leftDown = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0, false); KeyStroke
- * leftUp = KeyStroke.getKeyStroke(KeyEvent.VK_LEFT, 0, true);
- * 
- * if (leftDown.isOnKeyRelease()) { System.out.println("asdf"); }
- * 
- * //Game g = new Game(display); //g.play();
- * 
- * }
- */
 

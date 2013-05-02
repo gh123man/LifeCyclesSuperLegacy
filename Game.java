@@ -86,7 +86,7 @@ public class Game {
 		}
 
 		for (int i = 0; i < setf.size(); i++) {
-			if (!player.has(setf.get(i))) {
+			if (setf.get(i).getOwner() != player) {
 				setf.get(i).setState(false);
 			}
 		}
