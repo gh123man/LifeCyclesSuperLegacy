@@ -1,0 +1,3 @@
+Content\blank.xnb
+Content\mouse.xnb
+Content\Font1.xnb
