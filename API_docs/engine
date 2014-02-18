@@ -1,0 +1,3 @@
+This document outlines the engine api and how to use it. 
+The engine is a native (c++) applicaiton that computes game states. 
+
