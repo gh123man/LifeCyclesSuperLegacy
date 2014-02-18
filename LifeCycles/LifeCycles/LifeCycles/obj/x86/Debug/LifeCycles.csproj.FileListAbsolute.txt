@@ -1,9 +1,0 @@
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\bin\x86\Debug\LifeCycles.exe
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\bin\x86\Debug\LifeCycles.pdb
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\obj\x86\Debug\LifeCycles.csprojResolveAssemblyReference.cache
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\obj\x86\Debug\LifeCycles.exe
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\obj\x86\Debug\LifeCycles.pdb
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\bin\x86\Debug\Content\blank.xnb
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\bin\x86\Debug\Content\mouse.xnb
-C:\Users\Alex\Documents\Visual Studio 2010\Projects\LifeCycles\LifeCycles\LifeCycles\bin\x86\Debug\Content\Font1.xnb
