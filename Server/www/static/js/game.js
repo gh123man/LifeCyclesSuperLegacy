@@ -54,21 +54,40 @@ var Board = function(canvasId) {
         }
     }
 
+}
 
+var Game = function(board) {
+    
+    var self = this;
+    this.board = board;
+    
+    socket.on('initGame', function (data) {
+        board.init(data.x, data.y);
+    });
+    
+    socket.on('gameUpdate', function (data) {
+    
+        for (var i = 0; i < data.length; i++){
+            board.updateNode(data[i].x, data[i].y, '#999');
+        }
+        
+    });
+    
+    this.init = function() {
+        socket.emit('ready');
+    }
+    
 }
 
 $(function(){
     
     var board = new Board('lifeCycles');
-    board.init(80, 50);
+    var game = new Game(board);
     
-    socket.emit('startGame', {test: 'test'});
-    
-    socket.on('gameUpdate', function (data) {
-        board.updateNode(data, 10, '#999');
-    });
+    game.init();
     
 });
+
 
 
 

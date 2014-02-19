@@ -20,12 +20,18 @@ io.sockets.on( 'connection', function ( socket ) {
     
     console.log('connected');
     
+    var game = new Game(socket);
     
-    socket.on('startGame', function (data) {
-        var game = new Game(socket);
-        game.start()
+    socket.on('ready', function () {
+        socket.emit('initGame', {x: game.width, y: game.height});
+        
+        setTimeout(function(){
+            game.start();
+        },2000);
+        
         
     });
+    
     
     //disconnect event
     socket.on('disconnect', function () { //on disconnect remove user data form the routing table.
@@ -42,14 +48,17 @@ var Game = function (socket) {
     
     this.socket = socket;
     
-    this.gameTickInterval = 50; //miliseconds
+    this.tickRate = 50; //miliseconds
     this.ticks = 0;
     
     var self = this;
     
+    this.width = 80;
+    this.height = 50;
+    
     this.start = function() {
 
-        self.interval = setInterval(function(){ self.gameTick() }, self.gameTickInterval);
+        self.interval = setInterval(function(){ self.gameTick() }, self.tickRate);
         
     }
     
@@ -57,9 +66,12 @@ var Game = function (socket) {
     
         self.ticks++;
         
-        if (self.ticks < 100) {
+        if (self.ticks < 20) {
+            
+            var packet = [];
+            packet.push({x: self.ticks, y: self.ticks});
         
-            io.sockets.socket(self.socket.id).volatile.emit('gameUpdate', self.ticks);
+            io.sockets.socket(self.socket.id).volatile.emit('gameUpdate', packet);
         
         } else {
             self.stopGame();
