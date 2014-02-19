@@ -62,12 +62,15 @@ io.sockets.on( 'connection', function ( socket ) {
     
     
     socket.on('test', function (data) {
+        
+        /*
         for (var i = 0; i < 200; i++) {
             setTimeout(function() {
                 io.sockets.socket(socket.id).volatile.emit('update', 'test<br/>');
             }, i * 80);
             
         }
+        */
 
     });
     
