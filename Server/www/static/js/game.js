@@ -60,32 +60,17 @@ var Board = function(canvasId) {
 $(function(){
     
     var board = new Board('lifeCycles');
-    board.init(100, 60);
+    board.init(80, 50);
     
-    board.updateNode(10, 10, '#FF0000');
+    socket.emit('startGame', {test: 'test'});
     
-});
-
-
-
-/*
-$(function(){
-
     socket.on('gameUpdate', function (data) {
-        console.log(data);
-        $('#test').append(data);
+        board.updateNode(data, 10, '#999');
     });
     
-
-    
-
 });
 
-function sendData() {
-    var data = $('#testInpt').val();
-    socket.emit('startGame', {test: data});
-    
-}
-*/
+
+
           
 
