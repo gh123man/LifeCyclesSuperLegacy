@@ -6,7 +6,7 @@ $(function(){
     $('body').append('<input onclick="sendData()" type="button" id="sub" value="submit"></input>');
     
     
-    socket.on('update', function (data) {
+    socket.on('gameUpdate', function (data) {
         console.log(data);
         $('#test').append(data);
     });
@@ -18,7 +18,7 @@ $(function(){
 
 function sendData() {
     var data = $('#testInpt').val();
-    socket.emit('test', {test: data});
+    socket.emit('startGame', {test: data});
     
 }
 
