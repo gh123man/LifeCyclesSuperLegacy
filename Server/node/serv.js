@@ -1,4 +1,4 @@
-
+var net = require('net');
 //init
 var app = require('http').createServer(handler),
     formidable = require('formidable'),
@@ -54,7 +54,6 @@ for (var key in PIDtoSCKpool[fields.pID]) {
 }
 */
 
-
 // handle socket io request and build routing table
 io.sockets.on( 'connection', function ( socket ) {
 
@@ -62,8 +61,7 @@ io.sockets.on( 'connection', function ( socket ) {
     
     
     socket.on('test', function (data) {
-        
-        /*
+    /*
         for (var i = 0; i < 200; i++) {
             setTimeout(function() {
                 io.sockets.socket(socket.id).volatile.emit('update', 'test<br/>');
@@ -71,6 +69,27 @@ io.sockets.on( 'connection', function ( socket ) {
             
         }
         */
+        
+        
+        
+        var sock = net.createConnection({path: "/tmp/test2"});
+        console.log(data.test);
+        sock.write(data.test, function() {
+
+            sock.on('data', function(data) {
+            
+                console.log(data.toString());
+                io.sockets.socket(socket.id).volatile.emit('update', data.toString());
+                sock.destroy();
+                
+            }).on('connect', function() {
+                sock.write("GET / HTTP/1.0\r\n\r\n");
+            }).on('end', function() {
+                console.log('DONE');
+            });
+            
+        });
+        
 
     });
     

@@ -42,9 +42,11 @@ class session : public boost::enable_shared_from_this<session> {
         void handle_read(const boost::system::error_code& error, size_t bytes_transferred) {
         
             if (!error)  {
-                std::cout << "read" << std::endl;
-                boost::asio::async_write(socket_,
-                boost::asio::buffer(data_, bytes_transferred),
+            
+                std::string data(data_.begin(), data_.end());
+                std::cout << "read " << data << std::endl;
+                
+                boost::asio::async_write(socket_, boost::asio::buffer(data_, bytes_transferred),
                 boost::bind(&session::handle_write,
                 shared_from_this(),
                 boost::asio::placeholders::error));
@@ -57,8 +59,7 @@ class session : public boost::enable_shared_from_this<session> {
             
             if (!error) {
                 socket_.async_read_some(boost::asio::buffer(data_),
-                boost::bind(&session::handle_read,
-                shared_from_this(),
+                boost::bind(&session::handle_read, shared_from_this(),
                 boost::asio::placeholders::error,
                 boost::asio::placeholders::bytes_transferred));
             }
