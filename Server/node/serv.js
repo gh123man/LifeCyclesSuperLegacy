@@ -33,6 +33,7 @@ io.sockets.on( 'connection', function ( socket ) {
     });
     
     
+    
     //disconnect event
     socket.on('disconnect', function () { //on disconnect remove user data form the routing table.
         console.log('DISCONNECTED');
@@ -56,22 +57,49 @@ var Game = function (socket) {
     this.width = 80;
     this.height = 50;
     
+    this.direciton = 0;
+    this.lastx = 10;
+    this.lasty = 10;
+    
     this.start = function() {
 
         self.interval = setInterval(function(){ self.gameTick() }, self.tickRate);
         
     }
     
+    socket.on('updateInput', function (direction) {
+        if (direction < 0) {
+            self.direction = 3
+        } else if (direction > 3) {
+            self.direction = 0
+        } else {
+            self.direction = direction;
+        }
+        
+    });
+    
     this.gameTick = function() {
     
         self.ticks++;
         
-        if (self.ticks < 20) {
+        if (self.ticks < 200) {
             
             var packet = [];
-            packet.push({x: self.ticks, y: self.ticks});
+            
+            if (self.direction == 0) {
+                self.lasty++;
+            } else  if (self.direction == 1) {
+                self.lastx++;
+            } else  if (self.direction == 2) {
+                self.lasty--;
+            } else  if (self.direction == 3) {
+                self.lastx--;
+            }
+            
+            
+            packet.push({x: self.lastx, y: self.lasty});
         
-            io.sockets.socket(self.socket.id).volatile.emit('gameUpdate', packet);
+            socket.volatile.emit('gameUpdate', packet);
         
         } else {
             self.stopGame();

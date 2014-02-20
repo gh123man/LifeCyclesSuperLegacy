@@ -60,6 +60,7 @@ var Game = function(board) {
     
     var self = this;
     this.board = board;
+    this.direction = 0;
     
     socket.on('initGame', function (data) {
         board.init(data.x, data.y);
@@ -73,8 +74,33 @@ var Game = function(board) {
         
     });
     
+     document.addEventListener('keydown', function(event) {
+        if(event.keyCode == 37) { //left Arrow
+            self.updateInput('l');
+        }
+        else if(event.keyCode == 39) {
+            self.updateInput('r');
+        }
+    });
+    
     this.init = function() {
         socket.emit('ready');
+    }
+    
+    this.updateInput = function(direction) {
+        if (direction == 'l') {
+            self.direction++;
+        } else if (direction == 'r') {
+            self.direction--;
+        }
+        
+        if (self.direction < 0) {
+            self.direction = 3
+        } else if (self.direction > 3) {
+            self.direction = 0
+        }
+        
+        socket.emit('updateInput', self.direction);
     }
     
 }
