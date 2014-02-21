@@ -38,7 +38,7 @@ io.sockets.on( 'connection', function ( socket ) {
     socket.on('disconnect', function () { //on disconnect remove user data form the routing table.
         console.log('DISCONNECTED');
         
-        
+        game.hostQuit();
     });
 
 });
@@ -61,6 +61,10 @@ var Game = function (socket) {
     this.lastx = 10;
     this.lasty = 10;
     
+    this.hostQuit = function() {
+        console.log('host QUit');
+    }
+    
     this.start = function() {
 
         self.interval = setInterval(function(){ self.gameTick() }, self.tickRate);
@@ -82,8 +86,9 @@ var Game = function (socket) {
     
         self.ticks++;
         
-        if (self.ticks < 200) {
+        if (self.ticks < 1000) {
             
+            console.log(self.ticks);
             var packet = [];
             
             if (self.direction == 0) {
