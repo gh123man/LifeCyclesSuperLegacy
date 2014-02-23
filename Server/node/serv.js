@@ -57,12 +57,13 @@ var Game = function (socket) {
     this.width = 80;
     this.height = 50;
     
-    this.direciton = 0;
+    this.direction = 0;
     this.lastx = 10;
     this.lasty = 10;
     
     this.hostQuit = function() {
-        console.log('host QUit');
+        console.log('host Quit');
+        self.stopGame();
     }
     
     this.start = function() {
@@ -72,13 +73,21 @@ var Game = function (socket) {
     }
     
     socket.on('updateInput', function (direction) {
-        if (direction < 0) {
-            self.direction = 3
-        } else if (direction > 3) {
-            self.direction = 0
-        } else {
-            self.direction = direction;
+    
+        
+        if (direction == 'l') {
+            self.direction++;
+        } else if (direction == 'r') {
+            self.direction--;
         }
+        
+        if (self.direction < 0) {
+            self.direction = 3
+        } else if (self.direction > 3) {
+            self.direction = 0
+        }
+        
+        
         
     });
     
@@ -88,7 +97,7 @@ var Game = function (socket) {
         
         if (self.ticks < 1000) {
             
-            console.log(self.ticks);
+            //console.log(self.ticks);
             var packet = [];
             
             if (self.direction == 0) {

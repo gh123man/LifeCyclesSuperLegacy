@@ -67,6 +67,8 @@ var Game = function(board) {
     });
     
     socket.on('gameUpdate', function (data) {
+        
+        console.log(JSON.stringify(data));
     
         for (var i = 0; i < data.length; i++){
             board.updateNode(data[i].x, data[i].y, '#999');
@@ -88,19 +90,7 @@ var Game = function(board) {
     }
     
     this.updateInput = function(direction) {
-        if (direction == 'l') {
-            self.direction++;
-        } else if (direction == 'r') {
-            self.direction--;
-        }
-        
-        if (self.direction < 0) {
-            self.direction = 3
-        } else if (self.direction > 3) {
-            self.direction = 0
-        }
-        
-        socket.emit('updateInput', self.direction);
+        socket.emit('updateInput', direction);
     }
     
 }
