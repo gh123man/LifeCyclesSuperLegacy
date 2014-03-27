@@ -17,5 +17,7 @@ class Board {
         
         int getWidth();
         int getHeight();
+        
+        int get(int x, int y);
     
 };

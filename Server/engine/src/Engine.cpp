@@ -4,17 +4,15 @@ using namespace std;
 
 Engine::Engine() {}
 
-void Engine::write(string cmd) {
+int Engine::newBoard(int width, int height) {
     
-    if (cmd == "newBoard") {
-        
-        if (board != NULL) {
-            delete board;
-        }
-        
-        board = new Board(4, 4);
-        
+    if (board != NULL) {
+        delete board;
     }
+    
+    board = new Board(width, height);
+    return 1; //will be board ID
+        
     
 }
 

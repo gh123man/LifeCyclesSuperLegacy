@@ -1,15 +1,16 @@
 #include "Board.h"
-
+#include <iostream>
 using namespace std;
 
 Board::Board(int width, int height):
     width(width), 
     height(height) {
 
-    int** container = new int*[width];
+    container = new int*[width];
     for(int i = 0; i < width; ++i) {
         container[i] = new int[height];
     }
+    
 }
 
 Board::~Board() {
@@ -27,4 +28,8 @@ int Board::getWidth() {
 
 int Board::getHeight() {
     return height;
+}
+
+int Board::get(int x, int y) {
+    return container[x][y];
 }

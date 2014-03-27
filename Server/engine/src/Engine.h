@@ -11,7 +11,7 @@ class Engine {
         Engine();
         ~Engine();
         
-        void write(std::string cmd); //write with no recieve. 
+        int newBoard(int width, int height);
         
         Board* requestBoard(); //gets a board pointer. should take an ID when multiboard is added. 
     
