@@ -2,7 +2,7 @@
 CC=g++
 CFLAGS=-std=c++0x -Wall -lboost_system -lpthread
 
-all:	test 
+all:	clean test
 
 Board.o: Board.h Board.cpp
 	$(CC) Board.cpp -c

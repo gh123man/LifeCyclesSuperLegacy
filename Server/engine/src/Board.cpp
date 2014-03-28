@@ -1,5 +1,4 @@
 #include "Board.h"
-#include <iostream>
 using namespace std;
 
 Board::Board(int width, int height):
