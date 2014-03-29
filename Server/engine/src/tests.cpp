@@ -28,11 +28,16 @@ int main(int, char*[]) {
 	eng->newBoard(5, 4);
 	Board* board = eng->requestBoard();
 	
-	for (int y = 0; y < board->getHeight(); y++) {
+	
+	
+}
+
+
+void printBoard(Board* board) {
+    for (int y = 0; y < board->getHeight(); y++) {
 	    for (int x = 0; x < board->getWidth(); x++) {
 	        std::cout << board->get(x, y);
 	    }
 	    std::cout << std::endl;
 	}
-	
 }

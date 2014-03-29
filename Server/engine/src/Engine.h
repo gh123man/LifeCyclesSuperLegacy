@@ -1,5 +1,6 @@
 #include <string>
 #include "Board.h"
+#include "life.cpp"
 
 class Engine {
 
